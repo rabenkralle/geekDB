@@ -9,6 +9,7 @@ CREATE TABLE users (
     lastname VARCHAR(50) COMMENT 'Фамиль', -- COMMENT на случай, если имя неочевидное
     email VARCHAR(120) UNIQUE,
     phone BIGINT, 
+    is_active bit(1) DEFAULT 1 NULL,
     INDEX users_phone_idx(phone), -- как выбирать индексы?
     INDEX users_firstname_lastname_idx(firstname, lastname)
 );
@@ -21,6 +22,7 @@ CREATE TABLE `profiles` (
 	photo_id BIGINT UNSIGNED NULL,
     created_at DATETIME DEFAULT NOW(),
     hometown VARCHAR(100),
+
     FOREIGN KEY (user_id) REFERENCES users(id) -- что за зверь в целом?
     	ON UPDATE CASCADE -- как это работает? Какие варианты?
     	ON DELETE restrict -- как это работает? Какие варианты?
