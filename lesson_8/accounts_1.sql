@@ -1,3 +1,5 @@
+USE shop;
+
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE accounts (
   id SERIAL PRIMARY KEY,
