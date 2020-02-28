@@ -1,7 +1,11 @@
+DROP DATABASE IF EXISTS shop;
+CREATE DATABASE shop;
+USE shop;
+
 DROP TABLE IF EXISTS catalogs;
 CREATE TABLE catalogs (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Название раздела',
+  name VARCHAR(255) character set 'utf8' COMMENT 'Название раздела',
   UNIQUE unique_name(name(10))
 ) COMMENT = 'Разделы интернет-магазина';
 
@@ -15,7 +19,7 @@ INSERT INTO catalogs VALUES
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Имя покупателя',
+  name VARCHAR(255) character set 'utf8'  COMMENT 'Имя покупателя',
   birthday_at DATE COMMENT 'Дата рождения',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -32,8 +36,8 @@ INSERT INTO users (name, birthday_at) VALUES
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Название',
-  desription TEXT COMMENT 'Описание',
+  name VARCHAR(255) character set 'utf8' COMMENT 'Название',
+  description TEXT character set 'utf8' COMMENT 'Описание',
   price DECIMAL (11,2) COMMENT 'Цена',
   catalog_id INT UNSIGNED,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
