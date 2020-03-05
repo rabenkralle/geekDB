@@ -5,7 +5,8 @@ USE new_home;
 DROP TABLE IF EXISTS clients;
 CREATE TABLE clients (
 	id SERIAL PRIMARY KEY, -- SERIAL = BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
-    firstname VARCHAR(50) COMMENT 'Имя', surname VARCHAR(50) COMMENT 'Отчество',
+    firstname VARCHAR(50) COMMENT 'Имя', 
+    surname VARCHAR(50) COMMENT 'Отчество',
     lastname VARCHAR(50) COMMENT 'Фамилия',
     email VARCHAR(120) UNIQUE,
     phone BIGINT UNIQUE,
@@ -34,25 +35,113 @@ CREATE TABLE houses (
 	id SERIAL PRIMARY KEY,
 	name varchar(50),
 	address varchar(255),
-	floors bigint,
-	project_id bigint
--- 	FOREIGN KEY (project_id) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE restrict
+	floors bigint UNSIGNED NOT NULL,
+	project_id bigint UNSIGNED NOT NULL,
+	`status` ENUM('done', 'in progress', 'not started'),
+	done_date DATE,
+	FOREIGN KEY (project_id) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE restrict
 );
 
 DROP TABLE IF EXISTS apartments;
 CREATE TABLE apartments (
 	id SERIAL PRIMARY KEY,
-	house_id BIGINT,
-	rooms int,
-	`floor` int,
-	comment varchar(255),
-	number_of_apart int UNIQUE
-
+	house_id BIGINT UNSIGNED,
+	rooms int UNSIGNED NOT NULL,
+	`floor` int UNSIGNED,
+	description varchar(255),
+	apart_num int UNIQUE,
+	price decimal (11,2) UNSIGNED,
+	`status` ENUM('sale', 'rent'),
+	FOREIGN KEY (house_id) REFERENCES houses(id) ON UPDATE CASCADE ON DELETE restrict
 );
 
-DROP TABLE IF EXISTS prices;
-CREATE TABLE prices (
-	apart_id SERIAL PRIMARY KEY,
-	price bigint
+DROP TABLE IF EXISTS discounts;
+CREATE TABLE discounts (
+	id SERIAL PRIMARY KEY,
+	client_id bigint UNSIGNED NOT NULL,
+	apart_id bigint UNSIGNED NOT NULL,
+  	discount FLOAT UNSIGNED COMMENT 'Величина скидки от 0.0 до 1.0',
+  	started_at DATETIME,
+  	finished_at DATETIME,
+  	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+  	FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE CASCADE ON DELETE restrict
+	
+);
+
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders (
+	id SERIAL PRIMARY KEY,
+	client_id bigint UNSIGNED NOT NULL,
+	apart_id bigint UNSIGNED NOT NULL,
+	total bigint UNSIGNED NOT NULL,
+	`status` ENUM('requested', 'approved', 'declined'),
+	requested_at DATETIME DEFAULT NOW(),
+	confirmed_at DATETIME,
+	FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+DROP TABLE IF EXISTS photo_albums;
+CREATE TABLE photo_albums (
+	id SERIAL PRIMARY KEY,
+	name varchar(255),
+	apart_id bigint UNSIGNED,
+	house_id bigint UNSIGNED,
+	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (house_id) REFERENCES houses(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+DROP TABLE IF EXISTS plans_albums;
+CREATE TABLE plans_albums (
+	id SERIAL PRIMARY KEY,
+	name varchar(255),
+	apart_id bigint UNSIGNED,
+	house_id bigint UNSIGNED,
+	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (house_id) REFERENCES houses(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+
+DROP TABLE IF EXISTS photos;
+CREATE TABLE photos (
+	id SERIAL PRIMARY KEY,
+	ph_album_id BIGINT unsigned NOT NULL,
+	comment varchar(255),
+	FOREIGN KEY (ph_album_id) REFERENCES photo_albums(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+DROP TABLE IF EXISTS plans;
+CREATE TABLE plans (
+	id SERIAL PRIMARY KEY,
+	pl_album_id BIGINT unsigned NOT NULL,
+	comment varchar(255),
+	FOREIGN KEY (pl_album_id) REFERENCES plans_albums(id) ON UPDATE CASCADE ON DELETE RESTRICT
+	
+);
+
+DROP TABLE IF EXISTS rent_prices;
+CREATE TABLE rent_prices (
+	id SERIAL PRIMARY KEY,
+	apart_id bigint UNSIGNED NOT NULL,
+	price bigint UNSIGNED NOT NULL,
 	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE restrict
+);
+
+DROP TABLE IF EXISTS rent_orders;
+CREATE TABLE rent_orders (
+	id SERIAL PRIMARY KEY,
+	client_id bigint UNSIGNED NOT NULL,
+	apart_id BIGINT UNSIGNED NOT NULL,
+	rent_price_id bigint UNSIGNED NOT NULL,
+	`status` ENUM('requested', 'approved', 'declined'),
+	rent_from DATE,
+	rent_till DATE,
+	requested_at DATETIME DEFAULT NOW(),
+	confirmed_at DATETIME,
+	FOREIGN KEY (rent_price_id) REFERENCES rent_prices(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE CASCADE ON DELETE restrict
+	
 );	
