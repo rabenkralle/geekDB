@@ -83,6 +83,34 @@ CREATE TABLE orders (
 	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
+DROP TABLE IF EXISTS media_types;
+CREATE TABLE media_types(
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    created_at DATETIME DEFAULT NOW()
+);
+
+INSERT INTO `media_types` VALUES 
+	(1,'Photo','2003-07-09 10:08:05'),
+	(2,'Video','1984-04-18 01:55:09');
+
+
+DROP TABLE IF EXISTS media;
+CREATE TABLE media(
+	id SERIAL PRIMARY KEY,
+    media_type_id BIGINT UNSIGNED NOT NULL,
+    apart_id BIGINT UNSIGNED NOT NULL,
+  	body text,
+    filename VARCHAR(255),
+    size INT,
+	metadata JSON,
+    created_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	INDEX (apart_id),
+    FOREIGN KEY (apart_id) REFERENCES apartments(id),
+    FOREIGN KEY (media_type_id) REFERENCES media_types(id)
+);
+
 DROP TABLE IF EXISTS photo_albums;
 CREATE TABLE photo_albums (
 	id SERIAL PRIMARY KEY,
@@ -108,16 +136,20 @@ DROP TABLE IF EXISTS photos;
 CREATE TABLE photos (
 	id SERIAL PRIMARY KEY,
 	ph_album_id BIGINT unsigned NOT NULL,
+	media_id BIGINT unsigned NOT NULL,
 	comment varchar(255),
-	FOREIGN KEY (ph_album_id) REFERENCES photo_albums(id) ON UPDATE CASCADE ON DELETE RESTRICT
+	FOREIGN KEY (ph_album_id) REFERENCES photo_albums(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (media_id) REFERENCES media(id)
 );
 
 DROP TABLE IF EXISTS plans;
 CREATE TABLE plans (
 	id SERIAL PRIMARY KEY,
 	pl_album_id BIGINT unsigned NOT NULL,
+	media_id BIGINT unsigned NOT NULL,
 	comment varchar(255),
-	FOREIGN KEY (pl_album_id) REFERENCES plans_albums(id) ON UPDATE CASCADE ON DELETE RESTRICT
+	FOREIGN KEY (pl_album_id) REFERENCES plans_albums(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (media_id) REFERENCES media(id)
 	
 );
 
