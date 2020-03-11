@@ -242,63 +242,73 @@ CREATE TABLE `apartments` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `apart_num` int(11) DEFAULT NULL,
   `price` decimal(11,2) unsigned DEFAULT NULL,
-  `status` enum('sale','rent') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` ENUM('sold', 'reserved', 'sale'),
   PRIMARY KEY (`id`),
   UNIQUE KEY `apart_num` (`apart_num`),
   KEY `house_id` (`house_id`),
   CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('1', '1', 2, 8, 'Ut cumque et saepe ullam vero quas libero. Quia dolorem dolorem commodi ipsa omnis quis non. Ut quidem eius dolor inventore libero repellendus occaecati. Sapiente in deleniti voluptatem consequatur sint quia eum sint.', NULL, '0.00', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('2', '2', 4, 3, 'Tempora dolore ut quibusdam nobis nemo. Perferendis quam consectetur facere autem enim consequatur. Non deserunt et amet enim eum. Saepe voluptas alias nobis cum aliquid omnis et.', NULL, '13035.20', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('3', '3', 8, 6, 'Et ipsam pariatur quia facilis. Aut labore qui amet tempora inventore. Aut consectetur eius et consequuntur. Rerum illo dolore quibusdam voluptatem occaecati perferendis.', NULL, '562961.85', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('1', '1', 2, 8, 'Ut cumque et saepe ullam vero quas libero. Quia dolorem dolorem commodi ipsa omnis quis non. Ut quidem eius dolor inventore libero repellendus occaecati. Sapiente in deleniti voluptatem consequatur sint quia eum sint.', NULL, '0.00', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('2', '2', 4, 3, 'Tempora dolore ut quibusdam nobis nemo. Perferendis quam consectetur facere autem enim consequatur. Non deserunt et amet enim eum. Saepe voluptas alias nobis cum aliquid omnis et.', NULL, '13035.20', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('3', '3', 8, 6, 'Et ipsam pariatur quia facilis. Aut labore qui amet tempora inventore. Aut consectetur eius et consequuntur. Rerum illo dolore quibusdam voluptatem occaecati perferendis.', NULL, '562961.85', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('4', '4', 7, 5, 'Laudantium voluptatem id possimus porro. Distinctio deleniti vel assumenda aut.', NULL, '779287719.89', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('5', '5', 6, 4, 'Et ullam minima nobis. Eaque eum pariatur et non magni. Aut eum tempora nihil. Dignissimos ducimus tempore rem eligendi necessitatibus assumenda. Voluptas quo id pariatur exercitationem.', NULL, '3.14', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('5', '5', 6, 4, 'Et ullam minima nobis. Eaque eum pariatur et non magni. Aut eum tempora nihil. Dignissimos ducimus tempore rem eligendi necessitatibus assumenda. Voluptas quo id pariatur exercitationem.', NULL, '3.14', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('6', '6', 8, 6, 'Sit sit architecto praesentium quas praesentium. Laboriosam voluptatum laudantium illo aut sapiente eos. Cupiditate officiis voluptas soluta harum. Vel nesciunt delectus dolore atque. Aut nam quia dolores reprehenderit cumque.', NULL, '328.40', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('7', '7', 6, 7, 'Voluptas maiores nobis excepturi suscipit ipsam ut qui. Ut quos voluptate perspiciatis ullam amet est. Non asperiores ut dolor necessitatibus. Quia perspiciatis earum incidunt enim qui.', NULL, '2721.99', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('8', '8', 7, 1, 'Illum nemo saepe in sit eum quod quis. Quo dolorem sit nostrum nam ut. Eos aut incidunt provident qui dolor deserunt adipisci. Ut sint excepturi consectetur itaque ad ipsa.', NULL, '112015.99', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('9', '9', 5, 4, 'Dignissimos fugiat voluptatem saepe nisi sed nihil. Voluptas veniam ut est quibusdam aut. Assumenda consequatur possimus voluptatem optio cumque. Et natus quaerat quos natus dolores nostrum nihil.', NULL, '11088.90', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('10', '10', 7, 0, 'Quam culpa libero provident dolores beatae consequatur ducimus voluptatem. Perferendis perferendis voluptatum et recusandae et. Aut neque voluptatem eos id voluptas est.', NULL, '0.00', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('8', '8', 7, 1, 'Illum nemo saepe in sit eum quod quis. Quo dolorem sit nostrum nam ut. Eos aut incidunt provident qui dolor deserunt adipisci. Ut sint excepturi consectetur itaque ad ipsa.', NULL, '112015.99', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('9', '9', 5, 4, 'Dignissimos fugiat voluptatem saepe nisi sed nihil. Voluptas veniam ut est quibusdam aut. Assumenda consequatur possimus voluptatem optio cumque. Et natus quaerat quos natus dolores nostrum nihil.', NULL, '11088.90', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('10', '10', 7, 0, 'Quam culpa libero provident dolores beatae consequatur ducimus voluptatem. Perferendis perferendis voluptatum et recusandae et. Aut neque voluptatem eos id voluptas est.', NULL, '0.00', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('11', '11', 6, 5, 'Voluptatum deleniti tempora voluptates laborum. Ut assumenda adipisci inventore dicta molestiae. Voluptatem dolore sit accusantium eligendi sunt. Asperiores iste eum illo minus et nihil et quo.', NULL, '242.28', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('12', '12', 9, 5, 'Modi ipsum libero sunt est tenetur provident. In in non ut voluptate et. Veritatis unde enim dolorem eos reprehenderit.', NULL, '35777.15', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('13', '13', 6, 9, 'Est sint deleniti distinctio aliquam. Veritatis quidem non nesciunt minus consequatur. Rerum ut pariatur delectus et fuga qui. Optio facilis quae assumenda amet reprehenderit voluptatem quasi.', NULL, '183202.03', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('13', '13', 6, 9, 'Est sint deleniti distinctio aliquam. Veritatis quidem non nesciunt minus consequatur. Rerum ut pariatur delectus et fuga qui. Optio facilis quae assumenda amet reprehenderit voluptatem quasi.', NULL, '183202.03', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('14', '14', 7, 0, 'Repellendus ad consequatur sunt quisquam. Rerum et suscipit reiciendis illo. Aspernatur eos exercitationem repudiandae beatae nisi blanditiis. Molestiae consequuntur molestiae fugiat aut expedita.', NULL, '1507767.14', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('15', '15', 8, 2, 'Cum nisi qui neque ratione id quia error. Reprehenderit nostrum deserunt animi qui repellat non nihil. Sint impedit hic debitis est fuga laudantium in.', NULL, '625495.95', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('16', '16', 5, 4, 'Rerum quod explicabo quidem ut quia eveniet maxime. Veniam sint asperiores inventore. Saepe aliquid quas et.', NULL, '5255.06', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('17', '17', 4, 3, 'Dolorem aperiam voluptatibus non deserunt saepe blanditiis sint qui. Dolorum sunt optio sint dolor dolorum. Voluptas sapiente nihil magni sint voluptatem.', NULL, '113.00', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('16', '16', 5, 4, 'Rerum quod explicabo quidem ut quia eveniet maxime. Veniam sint asperiores inventore. Saepe aliquid quas et.', NULL, '5255.06', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('17', '17', 4, 3, 'Dolorem aperiam voluptatibus non deserunt saepe blanditiis sint qui. Dolorum sunt optio sint dolor dolorum. Voluptas sapiente nihil magni sint voluptatem.', NULL, '113.00', 'sold');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('18', '18', 9, 6, 'Maxime eaque et maiores qui tenetur vel libero. Ullam fugit omnis magnam consectetur. Repellendus suscipit quo saepe aliquid.', NULL, '0.21', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('19', '19', 2, 1, 'Eos consequatur voluptatem et. Omnis magni illo eaque qui qui aut cumque. Autem asperiores ullam nihil exercitationem mollitia nulla qui quia. Vero sed qui quia nihil.', NULL, '0.00', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('19', '19', 2, 1, 'Eos consequatur voluptatem et. Omnis magni illo eaque qui qui aut cumque. Autem asperiores ullam nihil exercitationem mollitia nulla qui quia. Vero sed qui quia nihil.', NULL, '0.00', 'sold');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('20', '20', 7, 5, 'Praesentium perspiciatis ratione sit illo est unde in. Facere ratione alias esse consectetur non at. Sunt est est ex amet maxime.', NULL, '184572885.72', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('21', '1', 7, 2, 'Esse sunt voluptatem perferendis ipsam molestiae eaque. Aut voluptatem et quia temporibus non labore exercitationem. Dolorem autem dolor dolorem quia et quidem maxime.', NULL, '17903.51', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('22', '2', 9, 4, 'Aut et cupiditate eos dolorem non. Laudantium rem repellendus at id laborum repudiandae. Maiores autem sed incidunt unde. Sit ullam reiciendis ut blanditiis. Officia non quia voluptatem ut.', NULL, '121368.91', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('21', '1', 7, 2, 'Esse sunt voluptatem perferendis ipsam molestiae eaque. Aut voluptatem et quia temporibus non labore exercitationem. Dolorem autem dolor dolorem quia et quidem maxime.', NULL, '17903.51', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('22', '2', 9, 4, 'Aut et cupiditate eos dolorem non. Laudantium rem repellendus at id laborum repudiandae. Maiores autem sed incidunt unde. Sit ullam reiciendis ut blanditiis. Officia non quia voluptatem ut.', NULL, '121368.91', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('23', '3', 4, 7, 'Aut nulla sequi perferendis voluptate quis qui doloremque. Nulla provident consequatur ipsam molestias nam nam. Architecto autem qui et corrupti.', NULL, '2711750.73', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('24', '4', 5, 8, 'Omnis nesciunt modi sed reprehenderit in molestiae illo adipisci. Ut vero soluta nihil ut nam est nostrum. Dolorem aut placeat aliquid voluptatum sed nam voluptas.', NULL, '6.00', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('25', '5', 5, 6, 'Eligendi nihil culpa officiis architecto natus vel. Ad quam rem quo rem asperiores. Adipisci dignissimos deserunt eveniet quae iste asperiores.', NULL, '0.19', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('26', '6', 4, 6, 'Qui libero repudiandae voluptatem qui est. Aut et incidunt saepe labore qui labore. Illum odit quo nihil nisi velit quas velit voluptatibus. Ipsa suscipit quia laudantium.', NULL, '45.95', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('27', '7', 7, 5, 'Impedit sequi enim aut et delectus aspernatur explicabo expedita. Omnis cupiditate earum ducimus dolore itaque corporis amet. Ex eveniet velit rem corporis ex. Exercitationem non cupiditate qui blanditiis perspiciatis labore.', NULL, '30589.01', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('28', '8', 6, 0, 'Dolorum provident quia fugit et saepe. Et enim aut aperiam consequatur quos beatae. Non est voluptatem et laboriosam quo enim quas enim. Eum quia sed a inventore. Maxime voluptas delectus aliquam architecto.', NULL, '3278.26', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('29', '9', 1, 0, 'Harum quo voluptatem sit doloremque. Eos vero quisquam pariatur quia ut sapiente aut. At ab veritatis cumque veniam nihil. Iusto consequatur veniam laborum at ab reiciendis.', NULL, '35872.27', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('30', '10', 1, 4, 'Doloremque quaerat fuga fugit facere. Et omnis aut minus omnis et et delectus. Quasi earum quidem corporis eaque blanditiis et quas.', NULL, '16055830.00', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('31', '11', 9, 7, 'Aut ab est dolorum. Blanditiis nihil rem aliquam reprehenderit quia nemo eum. Minus voluptatem enim itaque enim ea dolor. Laborum quis voluptatibus sequi ut.', NULL, '333112.26', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('28', '8', 6, 0, 'Dolorum provident quia fugit et saepe. Et enim aut aperiam consequatur quos beatae. Non est voluptatem et laboriosam quo enim quas enim. Eum quia sed a inventore. Maxime voluptas delectus aliquam architecto.', NULL, '3278.26', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('29', '9', 1, 0, 'Harum quo voluptatem sit doloremque. Eos vero quisquam pariatur quia ut sapiente aut. At ab veritatis cumque veniam nihil. Iusto consequatur veniam laborum at ab reiciendis.', NULL, '35872.27', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('30', '10', 1, 4, 'Doloremque quaerat fuga fugit facere. Et omnis aut minus omnis et et delectus. Quasi earum quidem corporis eaque blanditiis et quas.', NULL, '16055830.00', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('31', '11', 9, 7, 'Aut ab est dolorum. Blanditiis nihil rem aliquam reprehenderit quia nemo eum. Minus voluptatem enim itaque enim ea dolor. Laborum quis voluptatibus sequi ut.', NULL, '333112.26', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('32', '12', 3, 3, 'Esse magni ea et illum beatae. Incidunt qui non molestiae debitis sapiente recusandae quia. Est consequatur consequatur dolores facere. Distinctio ipsam dolorem asperiores eius enim harum laboriosam.', NULL, '105.20', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('33', '13', 6, 4, 'Quos ut quo distinctio repudiandae molestiae quos fuga perferendis. Minima corporis quidem excepturi sed nihil at. Eos architecto molestias incidunt quas.', NULL, '1906276.11', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('34', '14', 3, 9, 'Voluptatem dolorem officiis consequatur adipisci velit aut. Ipsam vero quia et. Repellat necessitatibus dolor illo asperiores. Qui iure aperiam consequatur minima nulla in quo.', NULL, '2601.58', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('34', '14', 3, 9, 'Voluptatem dolorem officiis consequatur adipisci velit aut. Ipsam vero quia et. Repellat necessitatibus dolor illo asperiores. Qui iure aperiam consequatur minima nulla in quo.', NULL, '2601.58', 'reserved');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('35', '15', 3, 0, 'Natus est voluptas est placeat magnam quod iste. Magni facilis rerum at dolore qui nisi. Dolorem autem cupiditate sed nihil nostrum harum reiciendis.', NULL, '50.37', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('36', '16', 5, 1, 'Nulla vel itaque qui numquam quos dolorum. Nostrum odio nihil quo assumenda et veniam fugiat. Porro sit exercitationem veritatis voluptas. Illum voluptas debitis ut veniam.', NULL, '0.00', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('37', '17', 2, 8, 'Fugiat quibusdam quasi qui quisquam sint minima odit. Accusamus eaque possimus consectetur.', NULL, '5284693.09', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('38', '18', 3, 5, 'Nam dolores molestias nihil voluptatem velit. Non deleniti hic ipsa nesciunt. Alias quas ducimus id quisquam.', NULL, '0.10', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('36', '16', 5, 1, 'Nulla vel itaque qui numquam quos dolorum. Nostrum odio nihil quo assumenda et veniam fugiat. Porro sit exercitationem veritatis voluptas. Illum voluptas debitis ut veniam.', NULL, '0.00', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('37', '17', 2, 8, 'Fugiat quibusdam quasi qui quisquam sint minima odit. Accusamus eaque possimus consectetur.', NULL, '5284693.09', 'reserved');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('38', '18', 3, 5, 'Nam dolores molestias nihil voluptatem velit. Non deleniti hic ipsa nesciunt. Alias quas ducimus id quisquam.', NULL, '0.10', 'sold');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('39', '19', 8, 8, 'Omnis dicta sit voluptates et modi. Deleniti exercitationem porro quasi rerum. Facilis recusandae unde omnis nesciunt molestiae ducimus aut.', NULL, '0.00', 'sale');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('40', '20', 7, 0, 'Est ipsa nihil cumque maxime exercitationem. Porro occaecati et non sit vero quis quas autem. Quas a quae voluptates aliquam asperiores nemo.', NULL, '17150803.00', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('41', '1', 4, 0, 'Quis incidunt est voluptatum quod voluptas voluptatem. Alias id voluptatibus qui dolor rerum. Aut est delectus aspernatur aperiam quia qui iusto. Nihil velit et quo possimus.', NULL, '4.91', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('41', '1', 4, 0, 'Quis incidunt est voluptatum quod voluptas voluptatem. Alias id voluptatibus qui dolor rerum. Aut est delectus aspernatur aperiam quia qui iusto. Nihil velit et quo possimus.', NULL, '4.91', 'sold');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('42', '2', 8, 8, 'Culpa nam voluptatum quasi aut. Corrupti excepturi et et inventore perferendis harum consequatur ducimus. Aut consectetur vel ab nisi at dolores corporis.', NULL, '20.50', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('43', '3', 8, 4, 'Nihil similique nobis ad rerum deleniti incidunt. Iure qui corrupti sed sunt sit aut magnam. Et iure qui delectus at accusamus quae consequatur quibusdam.', NULL, '30697190.15', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('44', '4', 3, 1, 'Et odit alias aut. Molestias aut veniam et a. Omnis quibusdam unde qui voluptatem.', NULL, '6.30', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('45', '5', 2, 5, 'Cumque nesciunt saepe et est architecto. Consequuntur quam aut explicabo consequatur sed. Dolores consequatur quo sed aperiam.', NULL, '1578.83', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('46', '6', 8, 5, 'In iure vel explicabo necessitatibus voluptas expedita sed. Earum earum dolore explicabo eveniet non nihil natus. Nihil qui in nihil aut tempora. Ad maxime reprehenderit in et corrupti alias fugiat.', NULL, '152157440.47', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('47', '7', 3, 8, 'Laboriosam ipsa delectus beatae explicabo reprehenderit eius nam. Voluptas voluptas eaque qui unde aut a hic facilis. Et corporis consequuntur voluptate cum totam fuga.', NULL, '1204169.77', 'rent');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('48', '8', 2, 7, 'Rerum iure eos dolorum velit autem nostrum corporis dolore. Dolorem repudiandae vitae et eos nam enim.', NULL, '359345.00', 'sale');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('43', '3', 8, 4, 'Nihil similique nobis ad rerum deleniti incidunt. Iure qui corrupti sed sunt sit aut magnam. Et iure qui delectus at accusamus quae consequatur quibusdam.', NULL, '30697190.15', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('44', '4', 3, 1, 'Et odit alias aut. Molestias aut veniam et a. Omnis quibusdam unde qui voluptatem.', NULL, '6.30', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('45', '5', 2, 5, 'Cumque nesciunt saepe et est architecto. Consequuntur quam aut explicabo consequatur sed. Dolores consequatur quo sed aperiam.', NULL, '1578.83', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('46', '6', 8, 5, 'In iure vel explicabo necessitatibus voluptas expedita sed. Earum earum dolore explicabo eveniet non nihil natus. Nihil qui in nihil aut tempora. Ad maxime reprehenderit in et corrupti alias fugiat.', NULL, '152157440.47', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('47', '7', 3, 8, 'Laboriosam ipsa delectus beatae explicabo reprehenderit eius nam. Voluptas voluptas eaque qui unde aut a hic facilis. Et corporis consequuntur voluptate cum totam fuga.', NULL, '1204169.77', 'sold');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('48', '8', 2, 7, 'Rerum iure eos dolorum velit autem nostrum corporis dolore. Dolorem repudiandae vitae et eos nam enim.', NULL, '359345.00', 'sold');
 INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('49', '9', 8, 4, 'Dolores earum dolor eligendi et dolorem. Sunt aspernatur consequatur velit soluta ipsum et quisquam. Omnis nam incidunt sint aut. Repudiandae assumenda rerum animi quis.', NULL, '1582.48', 'sale');
-INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('50', '10', 2, 5, 'Sint dolorum cumque rem quae eos. Et aut nostrum sint nostrum qui voluptatem. Id odio libero est fugiat omnis. Odit eveniet cumque eos illum similique modi.', NULL, '5863283.32', 'rent');
+INSERT INTO `apartments` (`id`, `house_id`, `rooms`, `floor`, `description`, `apart_num`, `price`, `status`) VALUES ('50', '10', 2, 5, 'Sint dolorum cumque rem quae eos. Et aut nostrum sint nostrum qui voluptatem. Id odio libero est fugiat omnis. Odit eveniet cumque eos illum similique modi.', NULL, '5863283.32', 'reserved');
+
+
+DROP TABLE IF EXISTS rent_apart;
+CREATE TABLE rent_apart (
+	id SERIAL PRIMARY KEY,
+	apart_id bigint UNSIGNED NOT NULL,
+	FOREIGN KEY (apart_id) REFERENCES apartments (id) ON UPDATE CASCADE ON DELETE restrict
+);
+
+INSERT INTO rent_apart VALUES ('1', '2'), ('2', '17'), ('3', '19'), ('4', '29'), ('5', '38'), ('6', '41'), ('7', '43'), ('8', '48');
 
 #
 # TABLE STRUCTURE FOR: media_types
@@ -744,37 +754,23 @@ INSERT INTO `orders` (`id`, `client_id`, `apart_id`, `total`, `status`, `request
 # TABLE STRUCTURE FOR: rent_prices
 #
 
-DROP TABLE IF EXISTS `rent_prices`;
+DROP TABLE IF EXISTS rent_prices;
+CREATE TABLE rent_prices (
+	id SERIAL PRIMARY KEY,
+	rent_apart_id bigint UNSIGNED NOT NULL,
+	price bigint UNSIGNED NOT NULL,
+	FOREIGN KEY (rent_apart_id) REFERENCES rent_apart(id) ON UPDATE CASCADE ON DELETE restrict
+);
 
-CREATE TABLE `rent_prices` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `apart_id` bigint(20) unsigned NOT NULL,
-  `price` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `apart_id` (`apart_id`),
-  CONSTRAINT `rent_prices_ibfk_1` FOREIGN KEY (`apart_id`) REFERENCES `apartments` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('1', '1', '7260');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('2', '2', '17988');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('3', '3', '47');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('4', '4', '0');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('5', '5', '1');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('6', '6', '138788616');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('7', '7', '59241899');
+INSERT INTO `rent_prices` (`id`, `rent_apart_id`, `price`) VALUES ('8', '8', '223983544');
 
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('1', '1', '7260');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('2', '2', '17988');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('3', '3', '47');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('4', '4', '0');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('5', '5', '1');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('6', '6', '138788616');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('7', '7', '59241899');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('8', '8', '223983544');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('9', '9', '47');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('10', '10', '0');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('11', '11', '1');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('12', '12', '290494499');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('13', '13', '389926');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('14', '14', '407900691');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('15', '15', '2739758');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('16', '16', '0');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('17', '17', '44817');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('18', '18', '483163');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('19', '19', '12801469');
-INSERT INTO `rent_prices` (`id`, `apart_id`, `price`) VALUES ('20', '20', '4117');
 
 #
 # TABLE STRUCTURE FOR: rent_orders
@@ -785,7 +781,7 @@ DROP TABLE IF EXISTS `rent_orders`;
 CREATE TABLE `rent_orders` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` bigint(20) unsigned NOT NULL,
-  `apart_id` bigint(20) unsigned NOT NULL,
+  `rent_apart_id` bigint(20) unsigned NOT NULL,
   `rent_price_id` bigint(20) unsigned NOT NULL,
   `status` enum('requested','approved','declined') COLLATE utf8_unicode_ci DEFAULT NULL,
   `rent_from` date DEFAULT NULL,
@@ -794,31 +790,31 @@ CREATE TABLE `rent_orders` (
   `confirmed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `rent_price_id` (`rent_price_id`),
-  KEY `apart_id` (`apart_id`),
+  KEY `rent_apart_id` (`rent_apart_id`),
   KEY `client_id` (`client_id`),
   CONSTRAINT `rent_orders_ibfk_1` FOREIGN KEY (`rent_price_id`) REFERENCES `rent_prices` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `rent_orders_ibfk_2` FOREIGN KEY (`apart_id`) REFERENCES `apartments` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `rent_orders_ibfk_2` FOREIGN KEY (rent_apart_id) REFERENCES rent_apart(id) ON UPDATE CASCADE,
   CONSTRAINT `rent_orders_ibfk_3` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('1', '101', '1', '1', 'requested', '2003-09-21', '1995-05-15', '2004-04-20 15:35:49', '1994-07-10 13:36:17');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('2', '102', '2', '2', 'declined', '1973-09-15', '2005-03-13', '1987-04-03 12:59:22', '2015-02-10 11:23:14');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('3', '103', '3', '3', 'declined', '2013-07-12', '1989-06-21', '1973-07-26 09:21:11', '1976-10-06 03:57:12');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('4', '104', '4', '4', 'requested', '1993-12-01', '2007-02-13', '1970-09-28 16:06:55', '1976-02-23 16:37:20');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('5', '105', '5', '5', 'requested', '1972-08-11', '2017-08-11', '1986-09-04 17:13:12', '1976-08-06 17:02:11');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('6', '106', '6', '6', 'declined', '2007-11-22', '1997-09-11', '1977-06-17 22:23:42', '1990-11-23 19:38:38');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('7', '107', '7', '7', 'requested', '1988-02-15', '1985-12-15', '2015-01-13 14:58:10', '2011-06-26 17:17:47');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('8', '108', '8', '8', 'requested', '2009-12-31', '2007-08-14', '1970-03-05 08:16:12', '2008-09-07 09:42:47');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('9', '109', '9', '9', 'approved', '2014-01-14', '2003-10-02', '1994-01-25 08:21:23', '1998-05-19 13:03:23');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('10', '110', '10', '10', 'requested', '1971-04-02', '2011-02-02', '2004-11-22 01:20:10', '1975-04-12 03:37:45');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('11', '111', '11', '11', 'approved', '1997-09-14', '1991-03-25', '2017-02-25 18:37:29', '1994-12-18 23:34:35');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('12', '112', '12', '12', 'requested', '1978-01-16', '2009-05-23', '2015-01-11 23:06:14', '2011-01-04 06:24:37');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('13', '113', '13', '13', 'requested', '2012-07-20', '2005-06-02', '1989-07-30 07:16:05', '1973-06-18 11:52:36');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('14', '114', '14', '14', 'declined', '1984-02-26', '1978-07-08', '2008-04-30 19:13:31', '2005-05-11 20:10:59');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('15', '115', '15', '15', 'declined', '1987-07-19', '2007-07-16', '1974-09-16 11:10:44', '1995-07-03 18:58:13');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('16', '116', '16', '16', 'requested', '1985-05-21', '1996-07-25', '1991-05-27 12:28:05', '1975-08-05 12:41:12');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('17', '119', '17', '17', 'declined', '1972-04-16', '1993-01-14', '1971-11-05 18:42:22', '1982-12-11 23:22:12');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('18', '120', '18', '18', 'requested', '1973-06-30', '2011-12-22', '1973-06-30 06:01:38', '2013-02-20 18:57:53');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('19', '121', '19', '19', 'approved', '1972-09-24', '1992-11-05', '2007-10-31 16:18:31', '2002-07-23 00:03:32');
-INSERT INTO `rent_orders` (`id`, `client_id`, `apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('20', '123', '20', '20', 'approved', '2011-07-01', '2005-11-07', '1983-03-09 06:35:00', '1991-06-07 05:53:26');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('1', '101', '1', '1', 'requested', '2003-09-21', '1995-05-15', '2004-04-20 15:35:49', '1994-07-10 13:36:17');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('2', '102', '2', '2', 'declined', '1973-09-15', '2005-03-13', '1987-04-03 12:59:22', '2015-02-10 11:23:14');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('3', '103', '3', '3', 'declined', '2013-07-12', '1989-06-21', '1973-07-26 09:21:11', '1976-10-06 03:57:12');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('4', '104', '4', '4', 'requested', '1993-12-01', '2007-02-13', '1970-09-28 16:06:55', '1976-02-23 16:37:20');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('5', '105', '5', '5', 'requested', '1972-08-11', '2017-08-11', '1986-09-04 17:13:12', '1976-08-06 17:02:11');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('6', '106', '6', '6', 'declined', '2007-11-22', '1997-09-11', '1977-06-17 22:23:42', '1990-11-23 19:38:38');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('7', '107', '7', '7', 'requested', '1988-02-15', '1985-12-15', '2015-01-13 14:58:10', '2011-06-26 17:17:47');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('8', '108', '8', '8', 'requested', '2009-12-31', '2007-08-14', '1970-03-05 08:16:12', '2008-09-07 09:42:47');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('9', '109', '1', '1', 'approved', '2014-01-14', '2003-10-02', '1994-01-25 08:21:23', '1998-05-19 13:03:23');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('10', '110', '2', '2', 'requested', '1971-04-02', '2011-02-02', '2004-11-22 01:20:10', '1975-04-12 03:37:45');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('11', '111', '3', '3', 'approved', '1997-09-14', '1991-03-25', '2017-02-25 18:37:29', '1994-12-18 23:34:35');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('12', '112', '4', '4', 'requested', '1978-01-16', '2009-05-23', '2015-01-11 23:06:14', '2011-01-04 06:24:37');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('13', '113', '5', '5', 'requested', '2012-07-20', '2005-06-02', '1989-07-30 07:16:05', '1973-06-18 11:52:36');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('14', '114', '6', '6', 'declined', '1984-02-26', '1978-07-08', '2008-04-30 19:13:31', '2005-05-11 20:10:59');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('15', '115', '7', '7', 'declined', '1987-07-19', '2007-07-16', '1974-09-16 11:10:44', '1995-07-03 18:58:13');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('16', '116', '8', '8', 'requested', '1985-05-21', '1996-07-25', '1991-05-27 12:28:05', '1975-08-05 12:41:12');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('17', '119', '1', '1', 'declined', '1972-04-16', '1993-01-14', '1971-11-05 18:42:22', '1982-12-11 23:22:12');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('18', '120', '2', '2', 'requested', '1973-06-30', '2011-12-22', '1973-06-30 06:01:38', '2013-02-20 18:57:53');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('19', '121', '3', '3', 'approved', '1972-09-24', '1992-11-05', '2007-10-31 16:18:31', '2002-07-23 00:03:32');
+INSERT INTO `rent_orders` (`id`, `client_id`, `rent_apart_id`, `rent_price_id`, `status`, `rent_from`, `rent_till`, `requested_at`, `confirmed_at`) VALUES ('20', '123', '4', '4', 'approved', '2011-07-01', '2005-11-07', '1983-03-09 06:35:00', '1991-06-07 05:53:26');
 

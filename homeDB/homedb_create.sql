@@ -51,9 +51,19 @@ CREATE TABLE apartments (
 	description varchar(255),
 	apart_num int UNIQUE,
 	price decimal (11,2) UNSIGNED,
-	`status` ENUM('sale', 'rent'),
+	`status` ENUM('sold', 'reserved', 'sale'),
 	FOREIGN KEY (house_id) REFERENCES houses(id) ON UPDATE CASCADE ON DELETE restrict
 );
+
+
+DROP TABLE IF EXISTS rent_apart;
+CREATE TABLE rent_apart (
+	id SERIAL PRIMARY KEY,
+	apart_id bigint UNSIGNED NOT NULL,
+	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE restrict
+);
+
+
 
 DROP TABLE IF EXISTS discounts;
 CREATE TABLE discounts (
@@ -156,16 +166,16 @@ CREATE TABLE plans (
 DROP TABLE IF EXISTS rent_prices;
 CREATE TABLE rent_prices (
 	id SERIAL PRIMARY KEY,
-	apart_id bigint UNSIGNED NOT NULL,
+	rent_apart_id bigint UNSIGNED NOT NULL,
 	price bigint UNSIGNED NOT NULL,
-	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE restrict
+	FOREIGN KEY (rent_apart_id) REFERENCES rent_apart(id) ON UPDATE CASCADE ON DELETE restrict
 );
 
 DROP TABLE IF EXISTS rent_orders;
 CREATE TABLE rent_orders (
 	id SERIAL PRIMARY KEY,
 	client_id bigint UNSIGNED NOT NULL,
-	apart_id BIGINT UNSIGNED NOT NULL,
+	rent_apart_id BIGINT UNSIGNED NOT NULL,
 	rent_price_id bigint UNSIGNED NOT NULL,
 	`status` ENUM('requested', 'approved', 'declined'),
 	rent_from DATE,
@@ -173,7 +183,7 @@ CREATE TABLE rent_orders (
 	requested_at DATETIME DEFAULT NOW(),
 	confirmed_at DATETIME,
 	FOREIGN KEY (rent_price_id) REFERENCES rent_prices(id) ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY (apart_id) REFERENCES apartments(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (rent_apart_id) REFERENCES rent_apart(id) ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE CASCADE ON DELETE restrict
 	
 );	

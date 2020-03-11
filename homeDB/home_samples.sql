@@ -1,15 +1,19 @@
 USE new_home;
 
+
 SELECT 
-	a.id AS apart_id,
+	ra.id AS apart_id,
 	a.floor,
 	a.rooms,
-	houses.name AS house_name,
-	rent_prices.price AS rent_price
-FROM apartments a
-	JOIN houses ON a.house_id = houses.id
-	JOIN rent_prices ON a.id = rent_prices.apart_id
-WHERE a.status = 'rent';
+	h.name AS house_name,
+	rp.price AS rent_price,
+
+FROM rent_apart ra 
+	JOIN apartments a ON ra.apart_id = a.id
+	JOIN houses h ON a.house_id = h.id 
+	JOIN rent_prices rp ON ra.apart_id = rp.rent_apart_id
+	JOIN media m ON a.id = m.apart_id 
+WHERE a.rooms > 1 AND a.floor > 1;
 
 SELECT 
 	a.id AS apart_id,
