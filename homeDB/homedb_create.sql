@@ -26,8 +26,8 @@ CREATE TABLE `profiles` (
 
 DROP TABLE IF EXISTS projects;
 CREATE TABLE projects (
-id SERIAL PRIMARY KEY,
-name varchar(50)
+	id SERIAL PRIMARY KEY,
+	name varchar(50)
 );
 
 DROP TABLE IF EXISTS houses;
@@ -39,6 +39,7 @@ CREATE TABLE houses (
 	project_id bigint UNSIGNED NOT NULL,
 	`status` ENUM('done', 'in progress', 'not started'),
 	done_date DATE,
+	INDEX (name),
 	FOREIGN KEY (project_id) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE restrict
 );
 
@@ -112,7 +113,7 @@ CREATE TABLE media(
     apart_id BIGINT UNSIGNED NOT NULL,
   	body text,
     filename VARCHAR(255),
-    size INT,
+    `size` INT,
 	metadata JSON,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
