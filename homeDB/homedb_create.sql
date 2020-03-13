@@ -53,6 +53,9 @@ CREATE TABLE apartments (
 	apart_num int UNIQUE,
 	price decimal (11,2) UNSIGNED,
 	`status` ENUM('sold', 'reserved', 'sale'),
+	INDEX (house_id),
+	INDEX (rooms),
+	INDEX (`floor`),
 	FOREIGN KEY (house_id) REFERENCES houses(id) ON UPDATE CASCADE ON DELETE restrict
 );
 

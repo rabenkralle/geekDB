@@ -246,6 +246,9 @@ CREATE TABLE `apartments` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `apart_num` (`apart_num`),
   KEY `house_id` (`house_id`),
+  INDEX (house_id),
+  INDEX (rooms),
+  INDEX (`floor`),
   CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
