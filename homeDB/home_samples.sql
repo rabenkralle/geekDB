@@ -76,3 +76,10 @@ WHERE o.status = 'requested';
 
 SELECT * FROM show_orders_request;
 
+SELECT 
+	count(*) AS 'resreved apartments',
+	a.rooms 
+FROM apartments a 
+WHERE a.status = 'reserved'
+GROUP BY a.rooms
+ORDER BY a.rooms;
