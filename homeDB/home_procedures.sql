@@ -2,6 +2,8 @@ USE new_home;
 
 delimiter //
 
+-- Процедура для поздравления клиента с Днем Рождения
+
 DROP PROCEDURE IF EXISTS birthday//
 CREATE PROCEDURE birthday ()
 BEGIN
@@ -23,6 +25,8 @@ delimiter ;
 
 
 delimiter //
+
+-- Процедура поиска свободных для аренды квартир на определенный период
 
 DROP PROCEDURE IF EXISTS rent_apart_free//
 CREATE PROCEDURE rent_apart_free (rent_start date, rent_end date)

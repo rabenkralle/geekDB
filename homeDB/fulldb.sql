@@ -326,8 +326,8 @@ CREATE TABLE `media_types` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `media_types` (`id`, `name`, `created_at`) VALUES ('1', 'Photo', '2003-07-09 10:08:05');
-INSERT INTO `media_types` (`id`, `name`, `created_at`) VALUES ('2', 'Video', '1984-04-18 01:55:09');
+INSERT INTO `media_types` (`id`, `name`, `created_at`) VALUES ('1', 'Photo', now());
+INSERT INTO `media_types` (`id`, `name`, `created_at`) VALUES ('2', 'Video', now());
 
 #
 # TABLE STRUCTURE FOR: discounts

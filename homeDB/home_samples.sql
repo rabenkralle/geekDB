@@ -1,5 +1,7 @@
 USE new_home;
 
+-- Представление поиска квартир в диапазонах комнат и этажей
+
 CREATE OR REPLACE VIEW show_apart AS
 	SELECT
 		a.id AS apart_id,
@@ -16,6 +18,8 @@ CREATE OR REPLACE VIEW show_apart AS
 
 SELECT * FROM show_apart sa WHERE sa.rooms > 1 AND (sa.`floor` > 1 AND sa.`floor` < 4);
 
+-- Поиск квартир на аренду по количеству комнат
+
 CREATE OR REPLACE VIEW show_rent_apart AS
 	SELECT 
 		ra.id AS apart_id,
@@ -31,6 +35,8 @@ CREATE OR REPLACE VIEW show_rent_apart AS
 
 SELECT * FROM show_rent_apart sra WHERE sra.rooms > 1;
 
+-- Представление фотографий определенных квартир
+
 CREATE OR REPLACE VIEW show_apart_photos AS
 	SELECT 
 		a.id AS apart_id,
@@ -43,6 +49,7 @@ CREATE OR REPLACE VIEW show_apart_photos AS
 
 SELECT * FROM show_apart_photos sap WHERE sap.apart_id = 2;
 
+-- Представление для поиска планов определенных квартир
 
 CREATE OR REPLACE VIEW show_apart_plans AS
 	SELECT 
@@ -57,6 +64,8 @@ CREATE OR REPLACE VIEW show_apart_plans AS
 	WHERE a.id = 2;
 
 SELECT * FROM show_apart_plans;
+
+-- Представление выборки заказов со статусом 'requested'
 
 CREATE OR REPLACE VIEW show_orders_request AS
 SELECT 
@@ -75,6 +84,8 @@ FROM orders o
 WHERE o.status = 'requested';
 
 SELECT * FROM show_orders_request;
+
+-- Подсчет зарезервированных квартир сгруппированных по количеству комнат
 
 SELECT 
 	count(*) AS 'resreved apartments',
